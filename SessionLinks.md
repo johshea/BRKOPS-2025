@@ -10,4 +10,4 @@
 - EDA Doumentaiton [Documentation](https://ansible.readthedocs.io/projects/rulebook/en/stable/introduction.html)
 
 ### Cisco
-- MEraki + Terraform Lab [Self Paced Learning](https://developer.cisco.com/learning/labs/meraki-dashboard-terraform/introduction/)
+- Meraki + Terraform Lab [Self Paced Learning](https://developer.cisco.com/learning/labs/meraki-dashboard-terraform/introduction/)
