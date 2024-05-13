@@ -1,2 +1,2 @@
 # Session Links
-Terrafrom Binary [GitHub Pages](https://pages.github.com/)
+Terrafrom [General](https://www.terraform.io))
