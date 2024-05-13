@@ -20,8 +20,9 @@
           recipient_id: "{{ roomid }}"
           msg_type: markdown
           personal_token: "{{ webex_api }}"
-          msg: "Network: {{ payload.networkName }} reported the following alert condition **{{ payload.alertTypeId }}** 
-          and added mac address **{{ payload.alertData.eth }}** to the blocked servers list"
+          msg: "<h4>Network: {{ payload.networkName }}</h4> reported the following alert condition **{{ payload.alertTypeId }}** 
+          and added <h4>mac address:</h4> {{ payload.alertData.eth }} to the blocked servers list  \n
+          <h4>Error_Info:</h4> https://documentation.meraki.com/MX/DHCP/Tracking_Down_Rogue_DHCP_Servers"
       when: aTypeId == "rogue_dhcp"
       ignore_errors: yes
 
@@ -37,8 +38,11 @@
         Device: {{ payload.deviceName }}  \n
         Serial: {{ payload.deviceSerial }}  \n
         Port: {{ payload.alertData.portNum }}  \n
-        </h4>  \nCable Test sent, standby for results"
+        Previous_Value: {{ payload.alertData.prevStatus }}  \n
+        Current_Value: {{ payload.alertData.status }}  \n
+        Description: {{ payload.alertData.portDesc }}  \n
+        Error_Info: https://documentation.meraki.com/MS/Monitoring_and_Reporting/Using_the_Cable_Test_Live_tool  \n
+        </h4>  \n
+        Cable Test sent, standby for results"
       when: aTypeId == "port_cable_error"
       ignore_errors: yes
-
-
