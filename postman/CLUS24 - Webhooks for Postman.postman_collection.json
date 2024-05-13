@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "cbc620a7-4209-4a96-b5e0-673b14db3006",
+		"name": "CLUS24 - Webhooks for Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "460206"
+	},
+	"item": [
+		{
+			"name": "MerakiRogueDHCP",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"content-length": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"version\": \"0.1\",\n  \"sharedSecret\": \"\",\n  \"sentAt\": \"2024-03-22T14:12:57.154425Z\",\n  \"organizationId\": \"1009754\",\n  \"organizationName\": \"Ultron\",\n  \"organizationUrl\": \"https://n111.meraki.com/o/F8r5Jd/manage/organization/overview\",\n  \"networkId\": \"L_625437398251083426\",\n  \"networkName\": \"Vision\",\n  \"networkUrl\": \"https://n111.meraki.com/Vision-cellular-/n/mef4tdVb/manage/nodes/list\",\n  \"networkTags\": [\n    \"daffy_backup_down\",\n    \"goofy_primary_up\"\n  ],\n  \"deviceSerial\": \"Q4CD-FGX9-P99D\",\n  \"deviceMac\": \"b8:ab:61:e4:44:ef\",\n  \"deviceName\": \"Core-MS13012X\",\n  \"deviceUrl\": \"https://n111.meraki.com/Vision/n/iHtaebVb/manage/nodes/new_list/203046221268207/summary?from=leftnav&menu=switching&timespan=86400\",\n  \"deviceTags\": [\n    \"MS\"\n  ],\n  \"deviceModel\": \"MS13012X\",\n  \"alertId\": \"\",\n  \"alertType\": \"Rogue DHCP server detected\",\n  \"alertTypeId\": \"rogue_dhcp\",\n  \"alertLevel\": \"warning\",\n  \"occurredAt\": \"2024-03-22T14:12:57.142750Z\",\n  \"alertData\": {\n    \"eth\": \"bb:bb:bb:11:11:11\",\n    \"ip\": \"10.20.2.62\",\n    \"subnet\": \"0.0.0.0/0\",\n    \"vlan\": \"3\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cciers.ngrok.io/meraki",
+					"protocol": "https",
+					"host": [
+						"cciers",
+						"ngrok",
+						"io"
+					],
+					"path": [
+						"meraki"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MerakiCableTest",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<insert your webhook body or use https://developer.cisco.com/meraki/webhooks/webhook-sample-alerts/#cable-error-detected>",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cciers.ngrok.io/meraki",
+					"protocol": "https",
+					"host": [
+						"cciers",
+						"ngrok",
+						"io"
+					],
+					"path": [
+						"meraki"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TE Alert -New",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"0\",\n    \"type\": \"2\",\n    \"alert\": {\n      \"id\": \"0XYZ\",\n      \"type\": \"Http\",\n      \"severity\": \"INFO\",\n      \"test\": {\n        \"name\": \"google\",\n        \"labels\": [\n          \"Sample Label 1\",\n          \"Sample Label 2\"\n        ]\n      },\n      \"targets\": [\n        \"https://google.com\"\n      ],\n      \"rule\": {\n        \"id\": \"0\",\n        \"name\": \"Sample Rule\",\n        \"expression\": \"Response Time ≥ 500 ms\",\n        \"notes\": \"Sample Notes\"\n      },\n      \"triggered\": 1711298635922,\n      \"details\": [\n        {\n          \"metricsAtStart\": \"Response Time: 888 ms\",\n          \"source\": {\n            \"id\": \"0\",\n            \"name\": \"Sample Agent 1\"\n          }\n        },\n        {\n          \"metricsAtStart\": \"Response Time: 999 ms\",\n          \"source\": {\n            \"id\": \"0\",\n            \"name\": \"Sample Agent 2\"\n          }\n        }\n      ]\n    }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cciers.ngrok.io/te",
+					"protocol": "https",
+					"host": [
+						"cciers",
+						"ngrok",
+						"io"
+					],
+					"path": [
+						"te"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

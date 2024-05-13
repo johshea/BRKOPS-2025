@@ -1,0 +1,23 @@
+---
+- name: block_roque_dhcp_servers
+  hosts: localhost
+  gather_facts: false
+  collections:
+  - cisco.meraki
+
+  tasks:
+  #- debug: "{{ payload.alertData.eth }}"
+
+  - name: Update_blocked_dhcp_servers
+    cisco.meraki.networks_switch_dhcp_server_policy:
+     meraki_api_key: "{{ apikey }}"
+     blockedServers:
+      - "{{ item.value }}"
+     defaultPolicy: allow
+     networkId: "{{ payload.networkId }}"
+    loop: "{{ lookup('dict', payload.alertData) }}"
+    when: "'eth' in item.key"
+    ignore_errors: yes
+
+
+

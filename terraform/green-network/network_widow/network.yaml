@@ -1,0 +1,10 @@
+---
+product_types: ["appliance", "wireless", "switch", "cellularGateway"]
+tags: ["cisco", "meraki", "terraform"]
+name: "Black_Widow"
+timezone: "America/Louisville"
+notes: "terraform network - Black_Widow"
+serials: ["Q3EJ-HS73-P2Q4", "Q2XN-A7L4-TJAY", "Q3AK-LDMR-6ULR"]
+address: "18021 Brightleaf Place, fisherville ky 40023"
+
+

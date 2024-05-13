@@ -1,0 +1,27 @@
+---
+- name: register_cabletest
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    ansible.builtin.uri:
+      validate_certs: false
+
+  tasks:
+    - name: create_cabletest
+      uri:
+        url: https://api.meraki.com/api/v1//devices/{{payload.deviceSerial}}/liveTools/cableTest
+        method: POST
+        follow_redirects: all
+        headers:
+          X-Cisco-Meraki-API-Key: "{{ apikey }}"
+        body_format: json
+        status_code: 201
+        body:
+          { callback: {'url': "{{ callbackUrl }}"},
+            ports: [ "{{ payload.alertData.portNum  }}" ]
+          }
+      register: cabletest
+
+    #- debug:
+        #var: cabletest
+

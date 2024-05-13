@@ -1,0 +1,24 @@
+---
+- name: processing webhook callbacks
+  hosts: localhost
+  module_defaults:
+    ansible.builtin.uri:
+      validate_certs: false
+
+  collections:
+    - community.general.cisco_webex
+
+
+  tasks:
+
+    - name: WebexTeams_Alert_Notification-CableError-Callback
+      community.general.cisco_webex:
+        recipient_type: roomId
+        recipient_id: "{{ roomid }}"
+        msg_type: markdown
+        personal_token: "{{ webex_api }}"
+        msg: "### Cable Test Results  \n
+        {{ payload.message.results }}"
+
+      when: messageType == 100
+      ignore_errors: yes

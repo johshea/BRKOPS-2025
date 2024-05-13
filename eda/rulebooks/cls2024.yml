@@ -1,0 +1,79 @@
+- name: CLUS2024 EDA / Meraki Demo
+  hosts: localhost
+  sources:
+  - name: the host address and port to listen
+    ansible.eda.webhook:
+      host: 0.0.0.0
+      port: 5001
+
+
+  rules:
+  #
+  # Process_the_meraki_webhook_events
+  #
+  - name: meraki_rogue_dhcp_alert
+    #when using meraki web hooks set meta.endpoint == "{{ meraki }}"
+    condition: event.payload.alertTypeId == "rogue_dhcp" and event.meta.endpoint == "meraki"
+    actions:
+      - run_playbook:
+          name: playbooks/ma_rogueDhcp.yml
+          extra_vars:
+            payload: "{{ event.payload }}"
+            apikey: "{{ m_apikey.key }}"
+
+      - run_playbook:
+          name: playbooks/ma_notifications.yml
+          extra_vars:
+            payload: "{{ event.payload }}"
+            roomid: "{{ webex.alert_roomid }}"
+            webex_api: "{{ webex.webex_api }}"
+
+  - name: meraki_cable_error_alert
+    condition: event.payload.alertTypeId == "port_cable_error" and event.meta.endpoint == "meraki"
+    actions:
+      - run_playbook:
+          name: playbooks/ma_cableAlert.yml
+          extra_vars:
+            callbackUrl: "{{ urls.callbackUrl }}"
+            payload: "{{ event.payload }}"
+            apikey: "{{ m_apikey.key }}"
+
+      - run_playbook:
+          name: playbooks/ma_notifications.yml
+          extra_vars:
+            payload: "{{ event.payload }}"
+            roomid: "{{ webex.alert_roomid }}"
+            webex_api: "{{ webex.webex_api }}"
+
+  - name: thousand_eyes_alerts
+    condition: event.payload.type == "2" or event.payload.type == "1"
+    actions:
+      - run_playbook:
+          name: playbooks/te_notifications.yaml
+          extra_vars:
+            payload: "{{event.payload }}"
+
+
+  - name: meraki_callbacks
+    condition: event.payload.callbackId != ""
+    actions:
+      - run_playbook:
+          name: playbooks/callback_notifications.yml
+          extra_vars:
+            payload: "{{ event.payload }}"
+            roomid: "{{ webex.alert_roomid }}"
+            webex_api: "{{ webex.webex_api }}"
+            messageType: 100
+
+
+
+  #
+  # Just print the payload
+  #
+  - name: print_output
+    condition: event.payload is defined
+    action:
+      debug:
+        msg:
+          - EVENT WAS NOT PROCESSED
+          - "EVENT IS  {{ event }}"

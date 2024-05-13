@@ -1,0 +1,14 @@
+- name: processing_thousandeyes_alerts
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    ansible.builtin.uri:
+      validate_certs: false
+
+  collections:
+    - community.general.cisco_webex
+
+  tasks:
+  #- debug:
+      #msg: You just processed webb {{ event.payload }}
+

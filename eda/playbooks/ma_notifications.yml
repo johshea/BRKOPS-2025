@@ -1,0 +1,44 @@
+---
+- name: processing_meraki_alerts
+  hosts: localhost
+  module_defaults:
+    ansible.builtin.uri:
+      validate_certs: false
+
+  collections:
+    - community.general.cisco_webex
+
+  vars:
+    aTypeId: "{{ payload.alertTypeId }}"
+
+
+
+  tasks:
+    - name: WebexTeams_Alert_Notification_RogueDHCP
+      community.general.cisco_webex:
+          recipient_type: roomId
+          recipient_id: "{{ roomid }}"
+          msg_type: markdown
+          personal_token: "{{ webex_api }}"
+          msg: "Network: {{ payload.networkName }} reported the following alert condition **{{ payload.alertTypeId }}** 
+          and added mac address **{{ payload.alertData.eth }}** to the blocked servers list"
+      when: aTypeId == "rogue_dhcp"
+      ignore_errors: yes
+
+
+    - name: WebexTeams_Alert_Notification-cableError
+      community.general.cisco_webex:
+        recipient_type: roomId
+        recipient_id: "{{ roomid }}"
+        msg_type: markdown
+        personal_token: "{{ webex_api }}"
+        msg: "**Network: {{ payload.networkName }}** reported the following alert condition **{{ payload.alertTypeId  }}** for 
+        <h4>
+        Device: {{ payload.deviceName }}  \n
+        Serial: {{ payload.deviceSerial }}  \n
+        Port: {{ payload.alertData.portNum }}  \n
+        </h4>  \nCable Test sent, standby for results"
+      when: aTypeId == "port_cable_error"
+      ignore_errors: yes
+
+

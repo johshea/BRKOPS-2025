@@ -1,0 +1,21 @@
+listen:
+  host: 0.0.0.0
+  port: 5001
+
+endpoint:
+  meraki: meraki
+  web: te
+
+m_apikey:
+  key: 7c997e5c8232b0f05a5d97680cc0a2b122b7fdb2
+
+m_orgid:
+  orgid: 1009754
+
+webex:
+  #for the posting of messages to webex teams rooms
+  alert_roomid: Y2lzY29zcGFyazovL3VzL1JPT00vNjY5OWZhZDAtNjFhOC0xMWVjLWFhY2UtZjVmYjdiNzIyYWU5
+  webex_api: NzcwYWFhYTAtZGIyNi00OTIwLWJiMjUtYjEzMDhjY2E3NjZjYjJmZGUzOGEtMWU2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f
+
+urls:
+  callbackUrl: https://cciers.ngrok.io
