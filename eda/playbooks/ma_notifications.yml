@@ -22,7 +22,7 @@
           personal_token: "{{ webex_api }}"
           msg: "<h4>Network: {{ payload.networkName }}</h4> reported the following alert condition **{{ payload.alertTypeId }}** 
           and added <h4>mac address:</h4> {{ payload.alertData.eth }} to the blocked servers list  \n
-          <h4>Error_Info:</h4> https://documentation.meraki.com/MX/DHCP/Tracking_Down_Rogue_DHCP_Servers"
+          <h4>Error_Info: https://documentation.meraki.com/MX/DHCP/Tracking_Down_Rogue_DHCP_Servers</h4>"
       when: aTypeId == "rogue_dhcp"
       ignore_errors: yes
 
