@@ -109,7 +109,7 @@ resource "meraki_networks_wireless_ssids" "all_ssids" {
   lan_isolation_enabled           = each.value.lan_isolation_enabled
 }
 
-//define l2 - L# Vlan attributes
+//define l2 - L3 Vlan attributes
 resource "meraki_networks_appliance_vlans" "appliance_vlans" {
   for_each = {
     for vlan in local.mx_vlans : vlan.vlan_id => vlan}
