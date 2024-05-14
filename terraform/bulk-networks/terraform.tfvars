@@ -1,0 +1,3 @@
+MERAKI_DASHBOARD_API_URL = "https://api.meraki.com/v1"
+MERAKI_DASHBOARD_API_KEY = "7c997e5c8232b0f05a5d97680cc0a2b122b7fdb2"
+org_id = "365279"
