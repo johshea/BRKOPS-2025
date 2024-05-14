@@ -10,5 +10,5 @@
 
   tasks:
   #- debug:
-      #msg: You just processed webb {{ event.payload }}
+      #msg: You just processed message {{ event.payload }}
 
